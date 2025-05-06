@@ -1,0 +1,69 @@
+#
+# Copyright (c) 2020 Fossil Group, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Fossil Group, Inc.
+#
+
+# Fossil Companion App Configs
+on property:ro.build.type=userdebug
+    setprop ro.oem.companion_package com.wearables.fossil.staging
+    setprop ro.oem.companion_digest 9f9d7436112ae796b58ac88c2f13d69a1b622a42
+    setprop ro.oem.ios_companion_app_ids 5M339SCS33.com.misfit.fossilq.staging:WC64T22ANZ.com.misfit.fossilq.staging.testflight:5M339SCS33.com.misfit.michaelkors.staging:5M339SCS33.com.misfit.diesel.on:5M339SCS33.com.misfit.skagen.connected:5M339SCS33.com.citizen.staging
+
+on property:ro.oem.brand=Fossil
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.fossil
+    setprop ro.oem.fastpair_id 2A5AAA
+
+on property:ro.oem.brand=Fossil && property:ro.build.type=user
+    setprop ro.oem.companion_package com.fossil.wearables.fossil
+    setprop ro.oem.companion_digest c6b6acaa3c34aba73bd73d21510f22868ef09bf6
+    setprop ro.oem.ios_companion_app_ids 92H7KQ6TD9.com.fossil.q
+
+on property:ro.oem.brand=FossilxRazer
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.fossilxrazer
+    setprop ro.oem.fastpair_id 2A5AAA
+
+on property:ro.oem.brand=FossilxRazer && property:ro.build.type=user
+    setprop ro.oem.companion_package com.fossil.wearables.fossil
+    setprop ro.oem.companion_digest c6b6acaa3c34aba73bd73d21510f22868ef09bf6
+    setprop ro.oem.ios_companion_app_ids 92H7KQ6TD9.com.fossil.q
+
+on property:ro.oem.brand=CTZ
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.ctz
+    setprop ro.oem.fastpair_id 2808F5
+
+on property:ro.oem.brand=CTZ && property:ro.build.type=user
+    setprop ro.oem.companion_package com.citizen.connected
+    setprop ro.oem.companion_digest 32127d13d7755199bab73a6c90ef7cb55d516540
+    setprop ro.oem.ios_companion_app_ids RRR48K642L.jp.co.citizen.connected
+
+on property:ro.oem.brand=DS
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.ds
+    setprop ro.oem.fastpair_id C1B5ED
+
+on property:ro.oem.brand=DS && property:ro.build.type=user
+    setprop ro.oem.companion_package com.diesel.on
+    setprop ro.oem.companion_digest ed5e49dea533ac1a7849e658b9d460d64a686098
+    setprop ro.oem.ios_companion_app_ids 92H7KQ6TD9.com.diesel.on
+
+on property:ro.oem.brand=EA
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.ea
+    setprop ro.oem.fastpair_id 9281D3
+
+on property:ro.oem.brand=MK
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.mk
+    setprop ro.oem.fastpair_id A85AFB
+
+on property:ro.oem.brand=MK && property:ro.build.type=user
+    setprop ro.oem.companion_package com.michaelkors.access
+    setprop ro.oem.companion_digest aee920a24940ef23a3aae88c77d7b813b69b2956
+    setprop ro.oem.ios_companion_app_ids WA2DB637JW.com.michaelkors.access
+
+on property:ro.oem.brand=SK
+    setprop ro.boot.vendor.overlay.theme com.google.android.theme.sk
+    setprop ro.oem.fastpair_id 94780D
+
+on property:ro.oem.brand=SK && property:ro.build.type=user
+    setprop ro.oem.companion_package com.skagen.connected
+    setprop ro.oem.companion_digest 23bc51a3e6337a81f6e901cd768a3c11dd7e27ca
+    setprop ro.oem.ios_companion_app_ids 92H7KQ6TD9.com.skagen.connected

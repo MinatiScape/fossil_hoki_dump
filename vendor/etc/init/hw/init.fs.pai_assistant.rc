@@ -1,0 +1,18 @@
+on property:ro.oem.sku=*
+    setprop ro.vendor.oem.sku ${ro.oem.sku}
+
+on property:ro.oem.brand=*
+    setprop ro.vendor.oem.brand ${ro.oem.brand}
+
+on property:ro.vendor.oem.sku=*
+    start fs_oem_assistant
+
+service fs_oem_assistant /vendor/bin/init.fs.pai_assistant.sh
+    class core
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:ro.vendor.oem.key1=*
+   setprop ro.oem.key1 ${ro.vendor.oem.key1}

@@ -1,0 +1,10 @@
+on property:sys.boot_completed=1
+    # Fossil start writing rsb initial data
+    start rsb_calib
+
+service rsb_calib /vendor/bin/init.rsb_calib.sh
+    class core
+    user system
+    group system
+    disabled
+    oneshot

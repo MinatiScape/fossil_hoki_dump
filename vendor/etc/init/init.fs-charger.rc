@@ -1,0 +1,12 @@
+on property:sys.cw_home_ready=1
+    start vendor.fossil-charger
+
+on property:persist.vendor.on-charger=*
+    start vendor.fossil-charger
+
+service vendor.fossil-charger /vendor/bin/fs_charger
+   class core
+   user system
+   group system oem_2901
+   disabled
+   oneshot
