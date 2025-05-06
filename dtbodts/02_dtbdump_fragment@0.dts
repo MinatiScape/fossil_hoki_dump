@@ -1,0 +1,27 @@
+/dts-v1/;
+
+/ {
+
+	__fixups__ {
+		mmc3 = "/fragment@0:target:0";
+		mmc3_iodelay_manual1_rev20_conf = "/fragment@0/__overlay__:pinctrl-4:4";
+		mmc3_pins_default = "/fragment@0/__overlay__:pinctrl-0:0";
+		mmc3_pins_hs = "/fragment@0/__overlay__:pinctrl-1:0";
+		mmc3_pins_sdr12 = "/fragment@0/__overlay__:pinctrl-2:0";
+		mmc3_pins_sdr25 = "/fragment@0/__overlay__:pinctrl-3:0";
+		mmc3_pins_sdr50 = "/fragment@0/__overlay__:pinctrl-4:0";
+	};
+
+	fragment@0 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			pinctrl-0 = <0xffffffff>;
+			pinctrl-1 = <0xffffffff>;
+			pinctrl-2 = <0xffffffff>;
+			pinctrl-3 = <0xffffffff>;
+			pinctrl-4 = <0xffffffff 0xffffffff>;
+			pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50";
+		};
+	};
+};

@@ -1,0 +1,893 @@
+/dts-v1/;
+
+/ {
+	#address-cells = <0x1>;
+	#size-cells = <0x1>;
+	compatible = "swir,mangoh-green-wp8548", "swir,wp8548", "qcom,mdm9615";
+	interrupt-parent = <0x1>;
+	model = "MangOH Green with WP8548 Module";
+
+	__symbols__ {
+		L2 = "/soc/l2-cache@2040000";
+		cpu0 = "/cpus/cpu@0";
+		gcc = "/soc/clock-controller@900000";
+		gpioext0 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@4/gpio@3e";
+		gpioext1 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@5/gpio@3f";
+		gpioext1_pins = "/soc/pinctrl@800000/gpioext1_pins";
+		gpioext2 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@6/gpio@70";
+		gsbi2 = "/soc/gsbi@16100000";
+		gsbi2_i2c = "/soc/gsbi@16100000/i2c@16180000";
+		gsbi3 = "/soc/gsbi@16200000";
+		gsbi3_pins = "/soc/pinctrl@800000/gsbi3_pins";
+		gsbi3_spi = "/soc/gsbi@16200000/spi@16280000";
+		gsbi4 = "/soc/gsbi@16300000";
+		gsbi4_pins = "/soc/pinctrl@800000/gsbi4_pins";
+		gsbi4_serial = "/soc/gsbi@16300000/serial@16340000";
+		gsbi5 = "/soc/gsbi@16400000";
+		gsbi5_i2c = "/soc/gsbi@16400000/i2c@16480000";
+		gsbi5_i2c_pins = "/soc/pinctrl@800000/gsbi5_i2c_pins";
+		gsbi5_serial = "/soc/gsbi@16400000/serial@16440000";
+		gsbi5_uart_pins = "/soc/pinctrl@800000/gsbi5_uart_pins";
+		i2c_iot0 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@0";
+		i2c_iot1 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@1";
+		i2c_iot2 = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@2";
+		intc = "/soc/interrupt-controller@2000000";
+		l2cc = "/soc/clock-controller@2011000";
+		lcc = "/soc/clock-controller@28000000";
+		msmgpio = "/soc/pinctrl@800000";
+		pm8018_l10 = "/soc/rpm@108000/regulators/l10";
+		pm8018_l11 = "/soc/rpm@108000/regulators/l11";
+		pm8018_l12 = "/soc/rpm@108000/regulators/l12";
+		pm8018_l13 = "/soc/rpm@108000/regulators/l13";
+		pm8018_l14 = "/soc/rpm@108000/regulators/l14";
+		pm8018_l2 = "/soc/rpm@108000/regulators/l2";
+		pm8018_l3 = "/soc/rpm@108000/regulators/l3";
+		pm8018_l4 = "/soc/rpm@108000/regulators/l4";
+		pm8018_l5 = "/soc/rpm@108000/regulators/l5";
+		pm8018_l6 = "/soc/rpm@108000/regulators/l6";
+		pm8018_l7 = "/soc/rpm@108000/regulators/l7";
+		pm8018_l8 = "/soc/rpm@108000/regulators/l8";
+		pm8018_l9 = "/soc/rpm@108000/regulators/l9";
+		pm8018_lvs1 = "/soc/rpm@108000/regulators/lvs1";
+		pm8018_s1 = "/soc/rpm@108000/regulators/s1";
+		pm8018_s2 = "/soc/rpm@108000/regulators/s2";
+		pm8018_s3 = "/soc/rpm@108000/regulators/s3";
+		pm8018_s4 = "/soc/rpm@108000/regulators/s4";
+		pm8018_s5 = "/soc/rpm@108000/regulators/s5";
+		pmicgpio = "/soc/qcom,ssbi@500000/pmic@0/gpio@150";
+		pmicintc = "/soc/qcom,ssbi@500000/pmic@0";
+		pmicmpp = "/soc/qcom,ssbi@500000/pmic@0/mpp@50";
+		reset_out_pins = "/soc/pinctrl@800000/reset_out_pins";
+		rpm = "/soc/rpm@108000";
+		sdc_cd_pins = "/soc/pinctrl@800000/sdc_cd_pins";
+		sdcc1 = "/soc/amba/sdcc@12180000";
+		sdcc1bam = "/soc/dma@12182000";
+		sdcc2 = "/soc/amba/sdcc@12140000";
+		sdcc2bam = "/soc/dma@12142000";
+		soc = "/soc";
+		tcsr = "/soc/syscon@1a400000";
+		usb_vbus_5v_pins = "/soc/qcom,ssbi@500000/pmic@0/gpio@150/usb_vbus_5v_pins";
+		usbhub = "/soc/gsbi@16400000/i2c@16480000/mux@71/i2c@3/hub@8";
+		vsdcc_fixed = "/regulators/vsdcc-regulator";
+	};
+
+	aliases {
+		i2c0 = "/soc/gsbi@16400000/i2c@16480000";
+		mmc0 = "/soc/amba/sdcc@12180000";
+		serial0 = "/soc/gsbi@16300000/serial@16340000";
+		serial1 = "/soc/gsbi@16400000/serial@16440000";
+		spi0 = "/soc/gsbi@16200000/spi@16280000";
+	};
+
+	chosen {
+		stdout-path = "serial1:115200n8";
+	};
+
+	clocks {
+
+		cxo_board {
+			#clock-cells = <0x0>;
+			clock-frequency = <0x124f800>;
+			compatible = "fixed-clock";
+		};
+	};
+
+	cpu-pmu {
+		compatible = "arm,cortex-a5-pmu";
+		interrupts = <0x1 0xa 0x104>;
+	};
+
+	cpus {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-a5";
+			device_type = "cpu";
+			linux,phandle = <0x17>;
+			next-level-cache = <0x2>;
+			phandle = <0x17>;
+		};
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x48000000 0x7f00000>;
+	};
+
+	regulators {
+
+		vsdcc-regulator {
+			compatible = "regulator-fixed";
+			linux,phandle = <0xf>;
+			phandle = <0xf>;
+			regulator-always-on;
+			regulator-max-microvolt = <0x2932e0>;
+			regulator-min-microvolt = <0x2932e0>;
+			regulator-name = "SDCC Power";
+		};
+	};
+
+	soc {
+		#address-cells = <0x1>;
+		#size-cells = <0x1>;
+		compatible = "simple-bus";
+		linux,phandle = <0x18>;
+		phandle = <0x18>;
+		ranges;
+
+		amba {
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			compatible = "simple-bus";
+			ranges;
+
+			sdcc@12140000 {
+				arm,primecell-periphid = <0x51180>;
+				assigned-clock-rates = <0x61a80>;
+				assigned-clocks = <0x4 0x79>;
+				bus-width = <0x4>;
+				cap-mmc-highspeed;
+				cap-sd-highspeed;
+				clock-names = "mclk", "apb_pclk";
+				clocks = <0x4 0x79 0x4 0x6f>;
+				compatible = "arm,pl18x", "arm,primecell";
+				dma-names = "tx", "rx";
+				dmas = <0x12 0x2 0x12 0x1>;
+				interrupt-names = "cmd_irq";
+				interrupts = <0x0 0x67 0x4>;
+				linux,phandle = <0x2c>;
+				max-frequency = <0x2dc6c00>;
+				no-1-8-v;
+				phandle = <0x2c>;
+				reg = <0x12140000 0x2000>;
+				status = "disabled";
+				vmmc-supply = <0xf>;
+			};
+
+			sdcc@12180000 {
+				arm,primecell-periphid = <0x51180>;
+				assigned-clock-rates = <0x61a80>;
+				assigned-clocks = <0x4 0x78>;
+				bus-width = <0x8>;
+				cap-mmc-highspeed;
+				cap-sd-highspeed;
+				cd-gpios = <0xc 0x2a 0x1>;
+				clock-names = "mclk", "apb_pclk";
+				clocks = <0x4 0x78 0x4 0x6e>;
+				compatible = "arm,pl18x", "arm,primecell";
+				disable-wp;
+				dma-names = "tx", "rx";
+				dmas = <0x10 0x2 0x10 0x1>;
+				interrupt-names = "cmd_irq";
+				interrupts = <0x0 0x68 0x4>;
+				linux,phandle = <0x2b>;
+				max-frequency = <0x2dc6c00>;
+				phandle = <0x2b>;
+				pinctrl-0 = <0x11>;
+				pinctrl-names = "default";
+				reg = <0x12180000 0x2000>;
+				status = "ok";
+				vmmc-supply = <0xf>;
+			};
+		};
+
+		clock-controller@2011000 {
+			compatible = "syscon";
+			linux,phandle = <0x13>;
+			phandle = <0x13>;
+			reg = <0x2011000 0x1000>;
+		};
+
+		clock-controller@28000000 {
+			#clock-cells = <0x1>;
+			#reset-cells = <0x1>;
+			compatible = "qcom,lcc-mdm9615";
+			linux,phandle = <0x19>;
+			phandle = <0x19>;
+			reg = <0x28000000 0x1000>;
+		};
+
+		clock-controller@900000 {
+			#clock-cells = <0x1>;
+			#reset-cells = <0x1>;
+			compatible = "qcom,gcc-mdm9615";
+			linux,phandle = <0x4>;
+			phandle = <0x4>;
+			reg = <0x900000 0x4000>;
+		};
+
+		dma@12142000 {
+			#dma-cells = <0x1>;
+			clock-names = "bam_clk";
+			clocks = <0x4 0x6f>;
+			compatible = "qcom,bam-v1.3.0";
+			interrupts = <0x0 0x61 0x4>;
+			linux,phandle = <0x12>;
+			phandle = <0x12>;
+			qcom,ee = <0x0>;
+			reg = <0x12142000 0x8000>;
+		};
+
+		dma@12182000 {
+			#dma-cells = <0x1>;
+			clock-names = "bam_clk";
+			clocks = <0x4 0x6e>;
+			compatible = "qcom,bam-v1.3.0";
+			interrupts = <0x0 0x62 0x4>;
+			linux,phandle = <0x10>;
+			phandle = <0x10>;
+			qcom,ee = <0x0>;
+			reg = <0x12182000 0x8000>;
+		};
+
+		gsbi@16100000 {
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			cell-index = <0x2>;
+			clock-names = "iface";
+			clocks = <0x4 0x94>;
+			compatible = "qcom,gsbi-v1.0.0";
+			linux,phandle = <0x1a>;
+			phandle = <0x1a>;
+			ranges;
+			reg = <0x16100000 0x100>;
+			status = "disabled";
+
+			i2c@16180000 {
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+				clock-names = "core", "iface";
+				clocks = <0x4 0xba 0x4 0x94>;
+				compatible = "qcom,i2c-qup-v1.1.1";
+				interrupts = <0x0 0x95 0x4>;
+				linux,phandle = <0x1b>;
+				phandle = <0x1b>;
+				reg = <0x16180000 0x1000>;
+				status = "disabled";
+			};
+		};
+
+		gsbi@16200000 {
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			cell-index = <0x3>;
+			clock-names = "iface";
+			clocks = <0x4 0x95>;
+			compatible = "qcom,gsbi-v1.0.0";
+			linux,phandle = <0x1c>;
+			phandle = <0x1c>;
+			qcom,mode = <0x3>;
+			ranges;
+			reg = <0x16200000 0x100>;
+			status = "ok";
+
+			spi@16280000 {
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+				assigned-clock-rates = <0x16e3600>;
+				assigned-clocks = <0x4 0xbc>;
+				clock-names = "core", "iface";
+				clocks = <0x4 0xbc 0x4 0x95>;
+				compatible = "qcom,spi-qup-v1.1.1";
+				interrupts = <0x0 0x97 0x4>;
+				linux,phandle = <0x1d>;
+				phandle = <0x1d>;
+				pinctrl-0 = <0x5>;
+				pinctrl-names = "default";
+				reg = <0x16280000 0x1000>;
+				spi-max-frequency = <0x16e3600>;
+				status = "ok";
+
+				spi@0 {
+					compatible = "swir,mangoh-iotport-spi", "spidev";
+					reg = <0x0>;
+					spi-max-frequency = <0x16e3600>;
+				};
+			};
+		};
+
+		gsbi@16300000 {
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			cell-index = <0x4>;
+			clock-names = "iface";
+			clocks = <0x4 0x96>;
+			compatible = "qcom,gsbi-v1.0.0";
+			linux,phandle = <0x1e>;
+			phandle = <0x1e>;
+			qcom,mode = <0x4>;
+			ranges;
+			reg = <0x16300000 0x100>;
+			status = "ok";
+			syscon-tcsr = <0x6>;
+
+			serial@16340000 {
+				clock-names = "core", "iface";
+				clocks = <0x4 0xa6 0x4 0x96>;
+				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+				interrupts = <0x0 0x98 0x4>;
+				linux,phandle = <0x1f>;
+				phandle = <0x1f>;
+				pinctrl-0 = <0x7>;
+				pinctrl-names = "default";
+				reg = <0x16340000 0x1000 0x16300000 0x1000>;
+				status = "ok";
+			};
+		};
+
+		gsbi@16400000 {
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			cell-index = <0x5>;
+			clock-names = "iface";
+			clocks = <0x4 0x97>;
+			compatible = "qcom,gsbi-v1.0.0";
+			linux,phandle = <0x20>;
+			phandle = <0x20>;
+			qcom,mode = <0x6>;
+			ranges;
+			reg = <0x16400000 0x100>;
+			status = "ok";
+			syscon-tcsr = <0x6>;
+
+			i2c@16480000 {
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+				assigned-clock-rates = <0x16e3600>;
+				assigned-clocks = <0x4 0xc0>;
+				clock-frequency = <0x30d40>;
+				clock-names = "core", "iface";
+				clocks = <0x4 0xc0 0x4 0x97>;
+				compatible = "qcom,i2c-qup-v1.1.1";
+				interrupts = <0x0 0x9b 0x4>;
+				linux,phandle = <0x21>;
+				phandle = <0x21>;
+				pinctrl-0 = <0x8>;
+				pinctrl-names = "default";
+				reg = <0x16480000 0x1000>;
+				status = "ok";
+
+				mux@71 {
+					#address-cells = <0x1>;
+					#size-cells = <0x0>;
+					compatible = "nxp,pca9548";
+					reg = <0x71>;
+
+					i2c@0 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						linux,phandle = <0x22>;
+						phandle = <0x22>;
+						reg = <0x0>;
+					};
+
+					i2c@1 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						linux,phandle = <0x23>;
+						phandle = <0x23>;
+						reg = <0x1>;
+					};
+
+					i2c@2 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						linux,phandle = <0x24>;
+						phandle = <0x24>;
+						reg = <0x2>;
+					};
+
+					i2c@3 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						reg = <0x3>;
+
+						hub@8 {
+							compatible = "smsc,usb3503a";
+							connect-gpios = <0x9 0x1 0x0>;
+							initial-mode = <0x1>;
+							intn-gpios = <0x9 0x0 0x1>;
+							linux,phandle = <0x25>;
+							phandle = <0x25>;
+							reg = <0x8>;
+						};
+					};
+
+					i2c@4 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						reg = <0x4>;
+
+						gpio@3e {
+							#gpio-cells = <0x2>;
+							#interrupt-cells = <0x2>;
+							compatible = "semtech,sx1509q";
+							gpio-controller;
+							interrupt-controller;
+							interrupt-parent = <0xa>;
+							interrupts = <0x0 0x2>;
+							linux,phandle = <0x26>;
+							phandle = <0x26>;
+							probe-reset;
+							reg = <0x3e>;
+						};
+					};
+
+					i2c@5 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						reg = <0x5>;
+
+						gpio@3f {
+							#gpio-cells = <0x2>;
+							#interrupt-cells = <0x2>;
+							compatible = "semtech,sx1509q";
+							gpio-controller;
+							interrupt-controller;
+							interrupt-parent = <0xc>;
+							interrupts = <0x0 0x2>;
+							linux,phandle = <0xa>;
+							phandle = <0xa>;
+							pinctrl-0 = <0xb>;
+							pinctrl-names = "default";
+							probe-reset;
+							reg = <0x3f>;
+						};
+					};
+
+					i2c@6 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						reg = <0x6>;
+
+						gpio@70 {
+							#gpio-cells = <0x2>;
+							#interrupt-cells = <0x2>;
+							compatible = "semtech,sx1509q";
+							gpio-controller;
+							interrupt-controller;
+							interrupt-parent = <0xa>;
+							interrupts = <0xe 0x2>;
+							linux,phandle = <0x9>;
+							phandle = <0x9>;
+							probe-reset;
+							reg = <0x70>;
+						};
+					};
+
+					i2c@7 {
+						#address-cells = <0x1>;
+						#size-cells = <0x0>;
+						reg = <0x7>;
+					};
+				};
+			};
+
+			serial@16440000 {
+				clock-names = "core", "iface";
+				clocks = <0x4 0xa8 0x4 0x97>;
+				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+				interrupts = <0x0 0x9a 0x4>;
+				linux,phandle = <0x27>;
+				phandle = <0x27>;
+				pinctrl-0 = <0xd>;
+				pinctrl-names = "default";
+				reg = <0x16440000 0x1000 0x16400000 0x1000>;
+				status = "ok";
+			};
+		};
+
+		interrupt-controller@2000000 {
+			#interrupt-cells = <0x3>;
+			compatible = "qcom,msm-qgic2";
+			interrupt-controller;
+			linux,phandle = <0x1>;
+			phandle = <0x1>;
+			reg = <0x2000000 0x1000 0x2002000 0x1000>;
+		};
+
+		l2-cache@2040000 {
+			arm,data-latency = <0x2 0x2 0x0>;
+			cache-level = <0x2>;
+			cache-unified;
+			compatible = "arm,pl310-cache";
+			linux,phandle = <0x2>;
+			phandle = <0x2>;
+			reg = <0x2040000 0x1000>;
+		};
+
+		pinctrl@800000 {
+			#gpio-cells = <0x2>;
+			#interrupt-cells = <0x2>;
+			compatible = "qcom,mdm9615-pinctrl";
+			gpio-controller;
+			interrupt-controller;
+			interrupts = <0x0 0x10 0x4>;
+			linux,phandle = <0xc>;
+			phandle = <0xc>;
+			pinctrl-0 = <0x3>;
+			pinctrl-names = "default";
+			reg = <0x800000 0x4000>;
+
+			gpioext1_pins {
+				linux,phandle = <0xb>;
+				phandle = <0xb>;
+
+				pins {
+					bias-disable;
+					function = "gpio";
+					input-enable;
+					pins = "gpio2";
+				};
+			};
+
+			gsbi3_pins {
+				linux,phandle = <0x5>;
+				phandle = <0x5>;
+
+				mux {
+					bias-disable;
+					drive-strength = <0x8>;
+					function = "gsbi3";
+					pins = "gpio8", "gpio9", "gpio10", "gpio11";
+				};
+			};
+
+			gsbi4_pins {
+				linux,phandle = <0x7>;
+				phandle = <0x7>;
+
+				mux {
+					bias-disable;
+					drive-strength = <0x8>;
+					function = "gsbi4";
+					pins = "gpio12", "gpio13", "gpio14", "gpio15";
+				};
+			};
+
+			gsbi5_i2c_pins {
+				linux,phandle = <0x8>;
+				phandle = <0x8>;
+
+				pin16 {
+					bias-disable;
+					drive-strength = <0x8>;
+					function = "gsbi5_i2c";
+					pins = "gpio16";
+				};
+
+				pin17 {
+					bias-disable;
+					drive-strength = <0x2>;
+					function = "gsbi5_i2c";
+					pins = "gpio17";
+				};
+			};
+
+			gsbi5_uart_pins {
+				linux,phandle = <0xd>;
+				phandle = <0xd>;
+
+				mux {
+					bias-disable;
+					drive-strength = <0x8>;
+					function = "gsbi5_uart";
+					pins = "gpio18", "gpio19";
+				};
+			};
+
+			reset_out_pins {
+				linux,phandle = <0x3>;
+				phandle = <0x3>;
+
+				pins {
+					bias-pull-up;
+					drive-strength = <0x2>;
+					function = "gpio";
+					output-high;
+					pins = "gpio66";
+				};
+			};
+
+			sdc_cd_pins {
+				linux,phandle = <0x11>;
+				phandle = <0x11>;
+
+				pins {
+					bias-pull-up;
+					drive-strength = <0x2>;
+					function = "gpio";
+					pins = "gpio42";
+				};
+			};
+		};
+
+		qcom,ssbi@500000 {
+			compatible = "qcom,ssbi";
+			qcom,controller-type = "pmic-arbiter";
+			reg = <0x500000 0x1000>;
+
+			pmic@0 {
+				#address-cells = <0x1>;
+				#interrupt-cells = <0x2>;
+				#size-cells = <0x0>;
+				compatible = "qcom,pm8018", "qcom,pm8921";
+				interrupt-controller;
+				interrupts = <0x1 0xe2 0x4>;
+				linux,phandle = <0xe>;
+				phandle = <0xe>;
+
+				gpio@150 {
+					#gpio-cells = <0x2>;
+					compatible = "qcom,pm8018-gpio", "qcom,ssbi-gpio";
+					gpio-controller;
+					interrupt-parent = <0xe>;
+					interrupts = <0x18 0x0 0x19 0x0 0x1a 0x0 0x1b 0x0 0x1c 0x0 0x1d 0x0>;
+					linux,phandle = <0x29>;
+					phandle = <0x29>;
+
+					usb_vbus_5v_pins {
+						bias-disable;
+						function = "normal";
+						linux,phandle = <0x2a>;
+						output-high;
+						phandle = <0x2a>;
+						pins = "gpio4";
+						power-source = <0x2>;
+						qcom,drive-strength = <0x1>;
+					};
+				};
+
+				mpp@50 {
+					#gpio-cells = <0x2>;
+					compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
+					gpio-controller;
+					interrupt-parent = <0xe>;
+					interrupts = <0x18 0x0 0x19 0x0 0x1a 0x0 0x1b 0x0 0x1c 0x0 0x1d 0x0>;
+					linux,phandle = <0x28>;
+					phandle = <0x28>;
+					reg = <0x50>;
+				};
+
+				pwrkey@1c {
+					compatible = "qcom,pm8018-pwrkey", "qcom,pm8921-pwrkey";
+					debounce = <0x3d09>;
+					interrupt-parent = <0xe>;
+					interrupts = <0x32 0x1 0x33 0x1>;
+					pull-up;
+					reg = <0x1c>;
+				};
+
+				rtc@11d {
+					allow-set-time;
+					compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
+					interrupt-parent = <0xe>;
+					interrupts = <0x27 0x1>;
+					reg = <0x11d>;
+				};
+			};
+		};
+
+		rng@1a500000 {
+			assigned-clock-rates = <0x1e84800>;
+			assigned-clocks = <0x4 0x108>;
+			clock-names = "core";
+			clocks = <0x4 0x108>;
+			compatible = "qcom,prng";
+			reg = <0x1a500000 0x200>;
+		};
+
+		rpm@108000 {
+			compatible = "qcom,rpm-mdm9615";
+			interrupt-names = "ack", "err", "wakeup";
+			interrupts = <0x0 0x13 0x1 0x0 0x15 0x1 0x0 0x16 0x1>;
+			linux,phandle = <0x2d>;
+			phandle = <0x2d>;
+			qcom,ipc = <0x13 0x8 0x2>;
+			reg = <0x108000 0x1000>;
+
+			regulators {
+				compatible = "qcom,rpm-pm8018-regulators";
+				vdd_l7-supply = <0x15>;
+				vdd_l8-supply = <0x14>;
+				vdd_l9_l10_l11_l12-supply = <0x16>;
+				vin_lvs1-supply = <0x14>;
+
+				l10 {
+					bias-pull-down;
+					linux,phandle = <0x38>;
+					phandle = <0x38>;
+					regulator-max-microvolt = <0x100590>;
+					regulator-min-microvolt = <0x100590>;
+				};
+
+				l11 {
+					bias-pull-down;
+					linux,phandle = <0x39>;
+					phandle = <0x39>;
+					regulator-max-microvolt = <0x100590>;
+					regulator-min-microvolt = <0x100590>;
+				};
+
+				l12 {
+					bias-pull-down;
+					linux,phandle = <0x3a>;
+					phandle = <0x3a>;
+					regulator-max-microvolt = <0x100590>;
+					regulator-min-microvolt = <0x100590>;
+				};
+
+				l13 {
+					bias-pull-down;
+					linux,phandle = <0x3b>;
+					phandle = <0x3b>;
+					regulator-max-microvolt = <0x2d0370>;
+					regulator-min-microvolt = <0x1c3a90>;
+				};
+
+				l14 {
+					bias-pull-down;
+					linux,phandle = <0x3c>;
+					phandle = <0x3c>;
+					regulator-max-microvolt = <0x2b7cd0>;
+					regulator-min-microvolt = <0x2b7cd0>;
+				};
+
+				l2 {
+					bias-pull-down;
+					linux,phandle = <0x30>;
+					phandle = <0x30>;
+					regulator-always-on;
+					regulator-max-microvolt = <0x1b7740>;
+					regulator-min-microvolt = <0x1b7740>;
+				};
+
+				l3 {
+					bias-pull-down;
+					linux,phandle = <0x31>;
+					phandle = <0x31>;
+					regulator-always-on;
+					regulator-max-microvolt = <0x1b7740>;
+					regulator-min-microvolt = <0x1b7740>;
+				};
+
+				l4 {
+					bias-pull-down;
+					linux,phandle = <0x32>;
+					phandle = <0x32>;
+					regulator-max-microvolt = <0x325aa0>;
+					regulator-min-microvolt = <0x325aa0>;
+				};
+
+				l5 {
+					bias-pull-down;
+					linux,phandle = <0x33>;
+					phandle = <0x33>;
+					regulator-max-microvolt = <0x2b7cd0>;
+					regulator-min-microvolt = <0x2b7cd0>;
+				};
+
+				l6 {
+					bias-pull-down;
+					linux,phandle = <0x34>;
+					phandle = <0x34>;
+					regulator-max-microvolt = <0x2b7cd0>;
+					regulator-min-microvolt = <0x1b7740>;
+				};
+
+				l7 {
+					bias-pull-down;
+					linux,phandle = <0x35>;
+					phandle = <0x35>;
+					regulator-max-microvolt = <0x1cfde0>;
+					regulator-min-microvolt = <0x1c3a90>;
+				};
+
+				l8 {
+					bias-pull-down;
+					linux,phandle = <0x36>;
+					phandle = <0x36>;
+					regulator-max-microvolt = <0x124f80>;
+					regulator-min-microvolt = <0x124f80>;
+				};
+
+				l9 {
+					bias-pull-down;
+					linux,phandle = <0x37>;
+					phandle = <0x37>;
+					regulator-max-microvolt = <0x118c30>;
+					regulator-min-microvolt = <0xb71b0>;
+				};
+
+				lvs1 {
+					bias-pull-down;
+					linux,phandle = <0x3d>;
+					phandle = <0x3d>;
+				};
+
+				s1 {
+					bias-pull-down;
+					linux,phandle = <0x2e>;
+					phandle = <0x2e>;
+					qcom,switch-mode-frequency = <0x186a00>;
+					regulator-max-microvolt = <0x118c30>;
+					regulator-min-microvolt = <0x7a120>;
+				};
+
+				s2 {
+					bias-pull-down;
+					linux,phandle = <0x2f>;
+					phandle = <0x2f>;
+					qcom,switch-mode-frequency = <0x186a00>;
+					regulator-max-microvolt = <0x13d620>;
+					regulator-min-microvolt = <0x12b128>;
+				};
+
+				s3 {
+					bias-pull-down;
+					linux,phandle = <0x14>;
+					phandle = <0x14>;
+					qcom,switch-mode-frequency = <0x186a00>;
+					regulator-always-on;
+					regulator-max-microvolt = <0x1b7740>;
+					regulator-min-microvolt = <0x1b7740>;
+				};
+
+				s4 {
+					bias-pull-down;
+					linux,phandle = <0x15>;
+					phandle = <0x15>;
+					qcom,switch-mode-frequency = <0x186a00>;
+					regulator-max-microvolt = <0x2191c0>;
+					regulator-min-microvolt = <0x200b20>;
+				};
+
+				s5 {
+					bias-pull-down;
+					linux,phandle = <0x16>;
+					phandle = <0x16>;
+					qcom,switch-mode-frequency = <0x186a00>;
+					regulator-always-on;
+					regulator-max-microvolt = <0x149970>;
+					regulator-min-microvolt = <0x149970>;
+				};
+			};
+		};
+
+		syscon@1a400000 {
+			compatible = "qcom,tcsr-mdm9615", "syscon";
+			linux,phandle = <0x6>;
+			phandle = <0x6>;
+			reg = <0x1a400000 0x100>;
+		};
+
+		timer@200a000 {
+			clock-frequency = <0x19bfcc0 0x8000>;
+			compatible = "qcom,kpss-timer", "qcom,msm-timer";
+			cpu-offset = <0x80000>;
+			interrupts = <0x1 0x1 0x101 0x1 0x2 0x101 0x1 0x3 0x101>;
+			reg = <0x200a000 0x100>;
+		};
+	};
+};

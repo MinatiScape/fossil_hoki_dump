@@ -1,0 +1,272 @@
+/dts-v1/;
+
+/ {
+
+	__fixups__ {
+		dss = "/fragment@4:target:0";
+		ehrpwm1 = "/fragment@101/__overlay__/backlight:pwms:0", "/fragment@0:target:0";
+		epwmss1 = "/fragment@1:target:0";
+		evm_5v0 = "/fragment@101/__overlay__/fixedregulator-com_3v6:vin-supply:0";
+		gpio2 = "/fragment@101/__overlay__/gpio_keys/USER1:gpios:0", "/fragment@101/__overlay__/gpio_keys/USER2:gpios:0", "/fragment@101/__overlay__/gpio_keys/USER3:gpios:0", "/fragment@101/__overlay__/gpio_keys/USER4:gpios:0", "/fragment@101/__overlay__/gpio_keys/USER5:gpios:0", "/fragment@101/__overlay__/display:enable-gpios:0", "/fragment@2/__overlay__/pixcir_ts@5c:attb-gpio:0", "/fragment@2/__overlay__/pixcir_ts@5c:interrupt-parent:0", "/fragment@2/__overlay__/pixcir_ts@5c:reset-gpio:0";
+		gpio5 = "/fragment@101/__overlay__/fixedregulator-mmcwl:gpio:0", "/fragment@5/__overlay__/wlcore@2:interrupt-parent:0";
+		i2c5 = "/fragment@2:target:0";
+		mmc3 = "/fragment@5:target:0";
+		uart8 = "/fragment@3:target:0";
+	};
+
+	__local_fixups__ {
+
+		fragment@101 {
+
+			__overlay__ {
+
+				display {
+					backlight = <0x0>;
+
+					port {
+
+						endpoint {
+							remote-endpoint = <0x0>;
+						};
+					};
+				};
+			};
+		};
+
+		fragment@4 {
+
+			__overlay__ {
+
+				ports {
+
+					port {
+
+						endpoint {
+							remote-endpoint = <0x0>;
+						};
+					};
+				};
+			};
+		};
+
+		fragment@5 {
+
+			__overlay__ {
+				vmmc-supply = <0x0>;
+				vqmmc-supply = <0x0>;
+			};
+		};
+	};
+
+	__symbols__ {
+		com_3v6 = "/fragment@101/__overlay__/fixedregulator-com_3v6";
+		dpi_out = "/fragment@4/__overlay__/ports/port/endpoint";
+		lcd0 = "/fragment@101/__overlay__/display";
+		lcd_bl = "/fragment@101/__overlay__/backlight";
+		lcd_in = "/fragment@101/__overlay__/display/port/endpoint";
+		vmmcwl_fixed = "/fragment@101/__overlay__/fixedregulator-mmcwl";
+		wlcore = "/fragment@5/__overlay__/wlcore@2";
+	};
+
+	fragment@0 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@1 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@101 {
+		target-path = [2f 00];
+
+		__overlay__ {
+			compatible = "ti,am5728-evm", "ti,am572x-beagle-x15", "ti,am5728", "ti,dra742", "ti,dra74", "ti,dra7";
+			model = "TI AM5728 EVM";
+
+			aliases {
+				display0 = "/display";
+				display1 = "/connector";
+			};
+
+			backlight {
+				brightness-levels = <0x0 0xf3 0xf5 0xf7 0xf9 0xfb 0xfc 0xfd 0xff>;
+				compatible = "pwm-backlight";
+				default-brightness-level = <0x8>;
+				phandle = <0x1>;
+				pwms = <0xffffffff 0x0 0xc350 0x0>;
+			};
+
+			display {
+				backlight = <0x1>;
+				compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
+				enable-gpios = <0xffffffff 0x5 0x0>;
+				label = "lcd";
+				phandle = <0x6>;
+
+				panel-timing {
+					clock-frequency = <0x1f78a40>;
+					de-active = <0x1>;
+					hactive = <0x320>;
+					hback-porch = <0x10>;
+					hfront-porch = <0xd2>;
+					hsync-active = <0x0>;
+					hsync-len = <0x1e>;
+					pixelclk-active = <0x1>;
+					vactive = <0x1e0>;
+					vback-porch = <0xa>;
+					vfront-porch = <0x16>;
+					vsync-active = <0x0>;
+					vsync-len = <0xd>;
+				};
+
+				port {
+
+					endpoint {
+						phandle = <0x3>;
+						remote-endpoint = <0x2>;
+					};
+				};
+			};
+
+			fixedregulator-com_3v6 {
+				compatible = "regulator-fixed";
+				phandle = <0x4>;
+				regulator-always-on;
+				regulator-boot-on;
+				regulator-max-microvolt = <0x36ee80>;
+				regulator-min-microvolt = <0x36ee80>;
+				regulator-name = "com_3v6";
+				vin-supply = <0xffffffff>;
+			};
+
+			fixedregulator-mmcwl {
+				compatible = "regulator-fixed";
+				enable-active-high;
+				gpio = <0xffffffff 0x8 0x0>;
+				phandle = <0x5>;
+				regulator-max-microvolt = <0x1b7740>;
+				regulator-min-microvolt = <0x1b7740>;
+				regulator-name = "vmmcwl_fixed";
+			};
+
+			gpio_keys {
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+				autorepeat;
+				compatible = "gpio-keys";
+
+				USER1 {
+					gpios = <0xffffffff 0x17 0x1>;
+					label = "Up";
+					linux,code = <0x67>;
+				};
+
+				USER2 {
+					gpios = <0xffffffff 0x19 0x1>;
+					label = "Down";
+					linux,code = <0x6c>;
+				};
+
+				USER3 {
+					gpios = <0xffffffff 0x1c 0x1>;
+					label = "Left";
+					linux,code = <0x69>;
+				};
+
+				USER4 {
+					gpios = <0xffffffff 0x18 0x1>;
+					label = "Right";
+					linux,code = <0x6a>;
+				};
+
+				USER5 {
+					gpios = <0xffffffff 0x14 0x1>;
+					label = "Home";
+					linux,code = <0x66>;
+				};
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			clock-frequency = <0x61a80>;
+			status = "okay";
+
+			pixcir_ts@5c {
+				attb-gpio = <0xffffffff 0x4 0x0>;
+				compatible = "pixcir,pixcir_tangoc";
+				interrupt-parent = <0xffffffff>;
+				interrupts = <0x4 0x0>;
+				reg = <0x5c>;
+				reset-gpio = <0xffffffff 0x6 0x0>;
+				touchscreen-size-x = <0x400>;
+				touchscreen-size-y = <0x258>;
+			};
+		};
+	};
+
+	fragment@3 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@4 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+
+			ports {
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+
+				port {
+					reg = <0x0>;
+
+					endpoint {
+						data-lines = <0x18>;
+						phandle = <0x2>;
+						remote-endpoint = <0x3>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@5 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			#address-cells = <0x1>;
+			#size-cells = <0x0>;
+			bus-width = <0x4>;
+			cap-power-off-card;
+			keep-power-in-suspend;
+			non-removable;
+			status = "okay";
+			vmmc-supply = <0x4>;
+			vqmmc-supply = <0x5>;
+
+			wlcore@2 {
+				compatible = "ti,wl1835";
+				interrupt-parent = <0xffffffff>;
+				interrupts = <0x7 0x1>;
+				phandle = <0x7>;
+				reg = <0x2>;
+			};
+		};
+	};
+};
