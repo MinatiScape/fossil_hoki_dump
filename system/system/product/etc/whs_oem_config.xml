@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configurations>
+  <configuration type="WHS_exercise_tracking">
+    <metrics>
+      <metric type = "exercise_hr" sensor_type = "exercise_hr"></metric>
+      <metric type = "exercise_step_count" sensor_type = "exercise_step_count"></metric>
+      <metric type = "exercise_calories" sensor_type = "exercise_calories"></metric>
+      <metric type = "exercise_location" sensor_type = "exercise_location"></metric>
+      <metric type = "exercise_distance" sensor_type = "exercise_distance"></metric>
+      <metric type = "exercise_speed" sensor_type = "exercise_speed"></metric>
+      <metric type = "exercise_elevation_gain" sensor_type = "exercise_elevation_gain"></metric>
+      <metric type = "exercise_elevation_loss" sensor_type = "exercise_elevation_loss"></metric>
+    </metrics>
+    <goals>
+      <goal type = "exercise_step_count_goal" sensor_type = "exercise_step_count"></goal>
+      <goal type = "exercise_distance_goal" sensor_type = "exercise_distance"></goal>
+      <goal type = "exercise_calories_goal" sensor_type = "exercise_calories"></goal>
+      <goal type = "exercise_speed_goal" sensor_type = "exercise_speed"></goal>
+    </goals>
+    <autopause sensor_type = "autopause" supported_exercise_types="WALKING,RUNNING,HIKING"></autopause>
+  </configuration>
+  <configuration type="WHS_passive_monitoring">
+    <metrics>
+      <metric type = "passive_hr" sensor_type = "passive_hr"></metric>
+      <metric type = "passive_step_count" sensor_type = "passive_step_count"></metric>
+      <metric type = "passive_distance" sensor_type = "passive_distance"></metric>
+      <metric type = "passive_calories" sensor_type = "passive_calories"></metric>
+      <metric type = "passive_elevation_gain" sensor_type = "passive_elevation_gain"></metric>
+      <metric type = "passive_floors" sensor_type = "passive_floors"></metric>
+    </metrics>
+    <goals>
+      <goal type = "passive_step_count_goal" sensor_type = "passive_step_count"></goal>
+      <goal type = "passive_distance_goal" sensor_type = "passive_distance"></goal>
+      <goal type = "passive_calories_goal" sensor_type = "passive_calories"></goal>
+      <goal type = "passive_floors_goal" sensor_type = "passive_floors"></goal>
+    </goals>
+  </configuration>
+</configurations>
